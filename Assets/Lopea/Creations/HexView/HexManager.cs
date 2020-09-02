@@ -17,12 +17,15 @@ namespace Lopea.ReCreate.HexView
 
         [SerializeField]
         float speed = 10, zCutoff = -5;
+
+        [SerializeField]
+        float space = 5;
         void Start()
         {
             Objects = new List<GameObject>();
             for (int i = 0; i < length; i++)
             {
-                var inst = Instantiate(prefab, new Vector3(0, 0, 5 + i * 5), Quaternion.Euler(-90, 0, 180), transform);
+                var inst = Instantiate(prefab, new Vector3(0, 0, 5 + i * space), Quaternion.Euler(-90, 0, 180), transform);
                 Objects.Add(inst);
             }
         }
@@ -44,7 +47,7 @@ namespace Lopea.ReCreate.HexView
 
                 if (Objects[i].transform.position.z < zCutoff)
                 {
-                    float max = GetNextZValue() + 5;
+                    float max = GetNextZValue() + space;
 
                     var pos = Objects[i].transform.position;
                     pos.z = max;
